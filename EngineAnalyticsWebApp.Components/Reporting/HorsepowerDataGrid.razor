@@ -1,0 +1,24 @@
+﻿@* @typeparam TItem *@
+
+@if (automobileData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @* HMTL table leveraging Bootstrap CSS classes *@
+    @* Leverages a Templated Blazor Component *@
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                @TableHeader
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var auto in automobileData)
+            {
+                @RowTemplate(auto)
+            }
+        </tbody>
+    </table>
+}
