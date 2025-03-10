@@ -1,13 +1,14 @@
 ﻿@* @typeparam TItem *@
 
-@if (automobileData == null)
+@if (filteredAutomobileData == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    <HorsepowerFilter FilterDescription="Model" OnFilterApplied="HandleFilterApplied"></HorsepowerFilter>
     @* HMTL table leveraging Bootstrap CSS classes *@
-    @* Leverages a Templated Blazor Component *@
+    @* Leverages a Templated Blazor Components *@
     <table class="table table-hover">
         <thead>
             <tr>
@@ -15,7 +16,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var auto in automobileData)
+            @foreach (var auto in filteredAutomobileData)
             {
                 @RowTemplate(auto)
             }

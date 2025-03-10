@@ -1,0 +1,10 @@
+﻿<div class="row mb-3">
+    <div class="col">
+        <label for="filterInput">Model @FilterDescription</label>
+        <input type="text" id="filterInput" @bind="filter" placeholder="Enter filter" class="form-control" />
+    </div>
+    <div class="col text-right">
+        <button @onclick="ApplyFilter" class="btn btn-primary">Apply Filter</button>
+        <button @onclick="ClearFilter" class="btn btn-secondary">Clear Filter</button>
+    </div>
+</div>

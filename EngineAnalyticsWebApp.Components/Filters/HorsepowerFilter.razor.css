@@ -1,0 +1,8 @@
+﻿body
+{
+}
+
+/* Ensure buttons align to the right of the input box and label */
+.text-right {
+    text-align: right;
+}
