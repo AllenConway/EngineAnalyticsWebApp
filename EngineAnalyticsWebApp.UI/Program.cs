@@ -36,4 +36,5 @@ builder.Services.AddBlazorise(options =>
 // Lazy loaded assemblies must reply on factories for service instantiation
 builder.Services.AddScoped<IMessageServiceFactory, MessageServiceFactory>();
 
+// builds and starts the Blazor application
 await builder.Build().RunAsync();

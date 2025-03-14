@@ -16,13 +16,48 @@ namespace EngineAnalyticsWebApp.Components.Weather
         [Inject]
         private IJSRuntime JS { get; set; } = default!;
 
+        /// <summary>
+        /// Called when the component is initialized. This is where you can perform any setup work
+        /// that requires asynchronous operations, such as fetching data from a service.
+        /// </summary>
+        /// <returns></returns>
         protected override async Task OnInitializedAsync()
         {
+            Console.WriteLine("1. OnInitializedAsync executed");
             await weatherService.SetWeatherZipCode(zipCode);
         }
 
+        /// <summary>
+        /// Called when the component receives parameters from its parent component.
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        public override async Task SetParametersAsync(ParameterView parameters)
+        {
+            Console.WriteLine("2. SetParametersAsync executed");
+            await base.SetParametersAsync(parameters);
+        }
+
+        /// <summary>
+        /// Called when the component's parameters have been set or updated. This is 
+        /// useful for handling parameter changes that require asynchronous operations.
+        /// </summary>
+        /// <returns></returns>
+        protected override async Task OnParametersSetAsync()
+        {
+            Console.WriteLine("3. OnParametersSetAsync executed");
+            await base.OnParametersSetAsync();
+        }
+
+        /// <summary>
+        /// Called after the component has been rendered. This is useful for performing post-rendering
+        /// operations that require asynchronous work, such as interacting with JavaScript.
+        /// </summary>
+        /// <param name="firstRender"></param>
+        /// <returns></returns>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            Console.WriteLine("4. OnAfterRenderAsync executed");
             if (firstRender)
             {
                 // Import JS module ansyncronously as this requires a network request
