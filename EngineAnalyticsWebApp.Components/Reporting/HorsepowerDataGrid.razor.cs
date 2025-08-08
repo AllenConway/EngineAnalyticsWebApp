@@ -18,7 +18,6 @@ namespace EngineAnalyticsWebApp.Components.Reporting
 
         private IEnumerable<Automobile> automobileData = new List<Automobile>();
         private IEnumerable<Automobile> filteredAutomobileData = new List<Automobile>();
-        private string? filter;
 
         /// <summary>
         /// Initializes the component and loads the automobile data.
@@ -35,7 +34,7 @@ namespace EngineAnalyticsWebApp.Components.Reporting
         {
             automobileData = await AutomobileDataService.GetAutomobiles();
             automobileData = automobileData.Where(x => x.EngineAnalytics?.RearWheelHorsepower != 0).ToList();
-            ApplyModelFilter();
+            ApplyModelFilter(null); // No filter on initialization
         }
 
         /// <summary>
@@ -44,14 +43,14 @@ namespace EngineAnalyticsWebApp.Components.Reporting
         /// <param name="newFilter">The new filter string.</param>
         private void HandleFilterApplied(string? newFilter)
         {
-            filter = newFilter;
-            ApplyModelFilter();
+            ApplyModelFilter(newFilter);
         }
 
         /// <summary>
         /// Applies the model filter to the automobile data.
         /// </summary>
-        private void ApplyModelFilter()
+        /// <param name="filter">The filter string to apply to the Model property. If null or empty, no filtering is applied.</param>
+        private void ApplyModelFilter(string? filter)
         {
             if (string.IsNullOrEmpty(filter))
             {
