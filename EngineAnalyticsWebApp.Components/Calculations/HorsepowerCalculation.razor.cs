@@ -10,6 +10,8 @@ namespace EngineAnalyticsWebApp.Components.Calculations
     {
         [Inject]
         private IAutomobileDataService AutomobileDataService { get; set; } = default!;
+        // Instantiate a Chevy - zero horsepower and analytics
+
         [Inject]
         private IEngineCalculationsService EngineCalculationsService { get; set; } = default!;
 
