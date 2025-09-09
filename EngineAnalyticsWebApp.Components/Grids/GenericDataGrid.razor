@@ -1,0 +1,12 @@
+﻿@typeparam TItem
+
+<DataGrid TItem="TItem"
+          Data="@Data"
+          Responsive
+          ShowPager="true"
+          PageSize="5"
+          Sortable="true"
+          @bind-SelectedRow="@SelectedRow">
+    <DataGridCommandColumn />
+    @Columns
+</DataGrid>

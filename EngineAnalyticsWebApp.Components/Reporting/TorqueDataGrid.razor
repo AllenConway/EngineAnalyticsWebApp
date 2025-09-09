@@ -5,7 +5,7 @@
 else
 {
     @*Blazorise table leveraging library components*@
-    <Table Hoverable>
+    @* <Table Hoverable>
         <TableHeader>
             <TableRow>
                 <TableHeaderCell>Year</TableHeaderCell>
@@ -30,5 +30,20 @@ else
                 </TableRow>
             }
         </TableBody>
-    </Table>
+    </Table> *@
+
+    <GenericTable Items="@automobileData">
+        <HeaderCells>
+            <TableHeaderCell>Year</TableHeaderCell>
+            <TableHeaderCell>Make</TableHeaderCell>
+            <TableHeaderCell>Model</TableHeaderCell>
+            <TableHeaderCell>Torque</TableHeaderCell>
+        </HeaderCells>
+        <RowCells Context="auto">
+            <TableRowCell>@auto.Year</TableRowCell>
+            <TableRowCell>@auto.Make</TableRowCell>
+            <TableRowCell>@auto.Model</TableRowCell>
+            <TableRowCell>@auto.EngineAnalytics?.Torque</TableRowCell>
+        </RowCells>
+    </GenericTable>
 }
