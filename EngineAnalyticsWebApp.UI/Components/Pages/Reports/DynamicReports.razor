@@ -1,0 +1,16 @@
+@page "/dynamic-reports"
+@using Microsoft.AspNetCore.Components
+
+<PageTitle>Dynamic Reports</PageTitle>
+
+<select @onchange="OnReportChanged" class="form-select mb-3">
+    <option value="">Select a report to view</option>
+    <option value="Displacement">Displacement Results Report</option>
+    <option value="Torque">Torque Results Report</option>
+</select>
+
+@if (selectedReportType != null)
+{
+    <!--Note that <DynamicComponent> is a Blazor custom component, and not a component we created-->
+    <DynamicComponent Type="@selectedReportType" Parameters="@reportParameters" />
+}

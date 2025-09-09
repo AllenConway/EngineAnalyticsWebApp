@@ -1,0 +1,17 @@
+﻿@typeparam TItem
+
+<Table Hoverable>
+    <TableHeader>
+        <TableRow>
+            @HeaderCells
+        </TableRow>
+    </TableHeader>
+    <TableBody>
+        @foreach (var item in Items)
+        {
+            <TableRow>
+                @(RowCells != null ? RowCells(item) : null)
+            </TableRow>
+        }
+    </TableBody>
+</Table>
