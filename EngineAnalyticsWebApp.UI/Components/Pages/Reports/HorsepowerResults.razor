@@ -23,7 +23,7 @@
     </TableHeader>
     <RowTemplate Context="auto">
         <tr>
-            <td>@auto.Year ?? 0</td>
+            <td>@(auto.Year is > 0 ? auto.Year.ToString() : "")</td>
             <td>@auto.Make</td>
             <td>@auto.Model</td>
             @if (auto.EngineAnalytics != null)
