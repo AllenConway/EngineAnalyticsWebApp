@@ -1,5 +1,5 @@
 ﻿<EditForm Model="@automobile" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInValidSubmit">
-    <ObjectGraphDataAnnotationsValidator />
+    <DataAnnotationsValidator />
     @*Using a fully qualified namespace as 'ValidationSummary' also exists in Blazorise*@
     <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
 

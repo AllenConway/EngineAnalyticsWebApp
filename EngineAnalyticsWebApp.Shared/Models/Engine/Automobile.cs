@@ -11,11 +11,9 @@ namespace EngineAnalyticsWebApp.Shared.Models.Engine
         [Required]
         public string? Model { get; set; }
         [Required]
-        [ValidateComplexType]
         public Horsepower? Horsepower { get; set; }
         public Displacement? Displacement { get; set; }
         public Torque? Torque { get; set; }
-        [ValidateComplexType]
         public EngineAnalytics? EngineAnalytics { get; set; }
     }
 }
