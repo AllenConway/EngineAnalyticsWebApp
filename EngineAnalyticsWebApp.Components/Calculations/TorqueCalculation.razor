@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms;
 
 <EditForm Model="@automobile" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInValidSubmit">
-    <ObjectGraphDataAnnotationsValidator />
+    <DataAnnotationsValidator />
     <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
 
     <CascadingValue Value="automobile">

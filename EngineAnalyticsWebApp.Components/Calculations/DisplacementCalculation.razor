@@ -1,6 +1,6 @@
 ﻿<EditForm Model="@automobile" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInValidSubmit">
     @*Validate the nested complex model in the form which validates the entire object*@
-    <ObjectGraphDataAnnotationsValidator />
+    <DataAnnotationsValidator />
     <Microsoft.AspNetCore.Components.Forms.ValidationSummary />
 
     <CascadingValue Value="automobile">
