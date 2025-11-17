@@ -23,7 +23,10 @@ namespace EngineAnalyticsWebApp.Components.Weather
         private async Task OnZipCodeDataLoaded(string zipCode)
         {
             currentWeatherData = await weatherDataService.GetCurrentWeather(zipCode);
-            StateHasChanged(); // required as the async nature post-await not updating the UI until next action
+            // StateHasChanged is required here because the UI is being updated from
+            // an observable subscription, which runs outside Blazor’s normal rendering pipeline,
+            // and the async nature post-await would not update the UI until next action otherwise
+            StateHasChanged();
         }
 
         public void Dispose()

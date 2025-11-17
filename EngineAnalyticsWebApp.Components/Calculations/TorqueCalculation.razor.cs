@@ -1,19 +1,14 @@
 ﻿
 using EngineAnalyticsWebApp.Components.Calculations.Services;
-using EngineAnalyticsWebApp.Shared.Models;
 using EngineAnalyticsWebApp.Shared.Models.Engine;
 using EngineAnalyticsWebApp.Shared.Services.Data;
-using Microsoft.AspNetCore.Components;
 
 namespace EngineAnalyticsWebApp.Components.Calculations
 {
-    public partial class TorqueCalculation
+    public partial class TorqueCalculation(
+        IAutomobileDataService automobileDataService,
+        IEngineCalculationsService engineCalculationsService)
     {
-        [Inject]
-        private IAutomobileDataService AutomobileDataService { get; set; } = default!;
-        [Inject]
-        private IEngineCalculationsService EngineCalculationsService { get; set; } = default!;
-
 
         private Automobile automobile = new()
         {
@@ -28,8 +23,8 @@ namespace EngineAnalyticsWebApp.Components.Calculations
         {
             if (automobile.Torque is not null)
             {
-                automobile.EngineAnalytics = this.EngineCalculationsService.CalculateEngineTorque(automobile.Torque);
-                await this.AutomobileDataService.AddAutomobile(automobile);
+                automobile.EngineAnalytics = engineCalculationsService.CalculateEngineTorque(automobile.Torque);
+                await automobileDataService.AddAutomobile(automobile);
                 statusMessage = "Successfully saved calculations";
                 alertClass = "alert-success";
                 StateHasChanged();  // required as the async nature post-await not updating the UI until next action

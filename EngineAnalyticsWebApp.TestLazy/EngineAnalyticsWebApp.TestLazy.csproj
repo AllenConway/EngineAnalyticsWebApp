@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -13,8 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="DartSassBuilder" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.*" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.*" />
   </ItemGroup>
 
   <ItemGroup>
