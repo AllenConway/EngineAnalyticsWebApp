@@ -1,21 +1,13 @@
 ﻿using EngineAnalyticsWebApp.Components.Calculations.Services;
-using EngineAnalyticsWebApp.Shared.Models;
 using EngineAnalyticsWebApp.Shared.Models.Engine;
 using EngineAnalyticsWebApp.Shared.Services.Data;
-using Microsoft.AspNetCore.Components;
 
 namespace EngineAnalyticsWebApp.Components.Calculations
 {
-    public partial class HorsepowerCalculation
+    public partial class HorsepowerCalculation(
+        IAutomobileDataService automobileDataService,
+        IEngineCalculationsService engineCalculationsService)
     {
-        [Inject]
-        private IAutomobileDataService AutomobileDataService { get; set; } = default!;
-        // Instantiate a Chevy - zero horsepower and analytics
-
-        [Inject]
-        private IEngineCalculationsService EngineCalculationsService { get; set; } = default!;
-
-
         private Automobile automobile = new()
         {
             Horsepower = new Horsepower(),
@@ -30,11 +22,10 @@ namespace EngineAnalyticsWebApp.Components.Calculations
         {
             if (automobile.Horsepower?.Weight != null && automobile.Horsepower?.EstimatedTime != null)
             {
-                automobile.EngineAnalytics = this.EngineCalculationsService.CalculateEngineHorsepower(automobile.Horsepower);
-                await this.AutomobileDataService.AddAutomobile(automobile);
+                automobile.EngineAnalytics = engineCalculationsService.CalculateEngineHorsepower(automobile.Horsepower);
+                await automobileDataService.AddAutomobile(automobile);
                 statusMessage = "Successfully saved calculations";
                 alertClass = "alert-success";
-                StateHasChanged();  // required as the async nature post-await not updating the UI until next action
             }
             else
             {
