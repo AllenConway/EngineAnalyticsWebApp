@@ -9,8 +9,13 @@ namespace EngineAnalyticsWebApp.TestLazy.Messaging
         [Parameter]
         public string? Message { get; set; }
         private string? formattedMessage;
-        [Inject]
-        private IMessageServiceFactory messageServiceFactory { get; set; } = default!;
+
+        public MessageComponent(IMessageServiceFactory messageServiceFactory)
+        {
+            this.messageServiceFactory = messageServiceFactory;
+        }
+
+        private IMessageServiceFactory messageServiceFactory { get; }
 
         protected override void OnInitialized()
         {

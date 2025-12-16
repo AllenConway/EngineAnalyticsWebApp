@@ -1,4 +1,4 @@
-﻿@page "/horsepower-results"
+@page "/horsepower-results"
 
 <PageTitle>@title</PageTitle>
 
@@ -22,7 +22,7 @@
         <th>Flywheel Horsepower</th>
     </TableHeader>
     <RowTemplate Context="auto">
-        <tr>
+        <tr @key="@($"{auto.Year}_{auto.Make}_{auto.Model}")">
             <td>@(auto.Year is > 0 ? auto.Year.ToString() : "")</td>
             <td>@auto.Make</td>
             <td>@auto.Model</td>

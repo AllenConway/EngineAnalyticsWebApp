@@ -5,13 +5,8 @@ using System.Reflection;
 
 namespace EngineAnalyticsWebApp.UI.Components
 {
-    public partial class App
+    public partial class App(LazyAssemblyLoader assemblyLoader, ILogger<App> logger)
     {
-        [Inject]
-        private LazyAssemblyLoader assemblyLoader { get; set; } = default!;
-        [Inject]
-        private ILogger<App> Logger { get; set; } = default!;
-
         private List<Assembly> lazyLoadedAssemblies = new();
 
         private async Task OnNavigateAsync(NavigationContext args)
@@ -27,7 +22,7 @@ namespace EngineAnalyticsWebApp.UI.Components
             }
             catch (Exception ex)
             {
-                Logger.LogError("Error: {Message}", ex.Message);
+                logger.LogError("Error: {Message}", ex.Message);
             }
         }
     }

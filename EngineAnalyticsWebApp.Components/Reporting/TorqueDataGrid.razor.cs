@@ -6,10 +6,10 @@ namespace EngineAnalyticsWebApp.Components.Reporting
 {
     public partial class TorqueDataGrid
     {
-        [Inject]
-        private IAutomobileDataService AutomobileDataService { get; set; } = default!;
-
         private IEnumerable<Automobile> automobileData = new List<Automobile>();
+
+        [Inject]
+        private IAutomobileDataService AutomobileDataService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

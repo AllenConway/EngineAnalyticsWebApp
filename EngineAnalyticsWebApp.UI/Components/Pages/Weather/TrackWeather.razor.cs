@@ -9,8 +9,12 @@ namespace EngineAnalyticsWebApp.UI.Components.Pages.Weather
         private string title = "Track Weather";
         private string? zipCode = "";
 
-        [Inject]
-        private IWeatherService weatherService { get; set; } = default!;
+        public TrackWeather(IWeatherService weatherService)
+        {
+            this.weatherService = weatherService;
+        }
+
+        private IWeatherService weatherService { get; }
 
         protected override async Task OnInitializedAsync()
         {
