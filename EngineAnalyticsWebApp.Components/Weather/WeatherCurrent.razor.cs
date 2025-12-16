@@ -8,12 +8,17 @@ namespace EngineAnalyticsWebApp.Components.Weather
 {
     public partial class WeatherCurrent
     {
-        [Inject]
-        private IWeatherService weatherService { get; set; } = default!;
-        [Inject]
-        private IWeatherDataService weatherDataService { get; set; } = default!;
+        private readonly IWeatherService weatherService;
+        private readonly IWeatherDataService weatherDataService;
         private Current currentWeatherData = new();
         private IDisposable? subscription;
+
+        public WeatherCurrent(IWeatherService weatherService, IWeatherDataService weatherDataService)
+        {
+            this.weatherService = weatherService;
+            this.weatherDataService = weatherDataService;
+        }
+
         protected override void OnInitialized()
         {
             subscription = weatherService.GetCurrentZipCodeStream()

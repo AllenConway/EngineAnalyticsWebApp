@@ -6,9 +6,12 @@ namespace EngineAnalyticsWebApp.Components.Reporting
 {
     public partial class HorsepowerDataGrid
     {
+        private readonly IAutomobileDataService automobileDataService;
 
-        [Inject]
-        private IAutomobileDataService AutomobileDataService { get; set; } = default!;
+        public HorsepowerDataGrid(IAutomobileDataService automobileDataService)
+        {
+            this.automobileDataService = automobileDataService;
+        }
 
         [Parameter]
         public RenderFragment<Automobile> RowTemplate { get; set; } = default!;
@@ -32,7 +35,7 @@ namespace EngineAnalyticsWebApp.Components.Reporting
         /// </summary>
         private async Task LoadAutomobileData()
         {
-            automobileData = await AutomobileDataService.GetAutomobiles();
+            automobileData = await automobileDataService.GetAutomobiles();
             automobileData = automobileData.Where(x => x.EngineAnalytics?.RearWheelHorsepower != 0).ToList();
             ApplyModelFilter(null); // No filter on initialization
         }
