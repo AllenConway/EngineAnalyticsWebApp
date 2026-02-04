@@ -4,6 +4,7 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using EngineAnalyticsWebApp.Components.Calculations.Services;
 using EngineAnalyticsWebApp.Components.Weather.Services;
+using EngineAnalyticsWebApp.Shared.Extensions;
 using EngineAnalyticsWebApp.Shared.Services.Data;
 using EngineAnalyticsWebApp.Shared.Services.Factories;
 using EngineAnalyticsWebApp.UI.Components;
@@ -35,6 +36,11 @@ builder.Services.AddBlazorise(options =>
 
 // Lazy loaded assemblies must reply on factories for service instantiation
 builder.Services.AddScoped<IMessageServiceFactory, MessageServiceFactory>();
+
+// Supports validating properties of nested objects and collection items
+// Call AddValidationForSharedTypes() first to register validators for types in the Shared project
+builder.Services.AddValidationForSharedTypes();
+builder.Services.AddValidation();
 
 // builds and starts the Blazor application
 await builder.Build().RunAsync();

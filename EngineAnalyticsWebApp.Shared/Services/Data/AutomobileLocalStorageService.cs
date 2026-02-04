@@ -3,14 +3,9 @@ using EngineAnalyticsWebApp.Shared.Models.Engine;
 
 namespace EngineAnalyticsWebApp.Shared.Services.Data
 {
-    public class AutomobileLocalStorageService : IAutomobileDataService
+    public class AutomobileLocalStorageService(ILocalStorageService localStorage) : IAutomobileDataService
     {
-        private readonly ILocalStorageService localStorage;
         private readonly string localStorageAutoKey = "automobiles";
-        public AutomobileLocalStorageService(ILocalStorageService localStorage)
-        {
-            this.localStorage = localStorage;
-        }
 
         public async Task AddAutomobile(Automobile automobile)
         {
@@ -20,7 +15,7 @@ namespace EngineAnalyticsWebApp.Shared.Services.Data
                 var autos = await this.GetAutomobiles();
                 autos = autos.Append(automobile);
 
-                await this.localStorage.SetItemAsync(this.localStorageAutoKey, autos);
+                await localStorage.SetItemAsync(this.localStorageAutoKey, autos);
             }
 
         }
@@ -28,15 +23,8 @@ namespace EngineAnalyticsWebApp.Shared.Services.Data
         public async Task<IEnumerable<Automobile>> GetAutomobiles()
         {
             IEnumerable<Automobile> automobiles = new List<Automobile>();
-            var autos = await this.localStorage.GetItemAsync<IEnumerable<Automobile>>(this.localStorageAutoKey);
-            if (autos is null)
-            {
-                return automobiles;
-            }
-            else
-            {
-                return autos;
-            }
+            var autos = await localStorage.GetItemAsync<IEnumerable<Automobile>>(this.localStorageAutoKey);
+            return autos ?? automobiles;
         }
     }
 }

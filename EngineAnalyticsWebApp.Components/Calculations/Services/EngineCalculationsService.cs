@@ -31,10 +31,17 @@ namespace EngineAnalyticsWebApp.Components.Calculations.Services
 
         public EngineAnalytics CalculateEngineDisplacement(Displacement displacement)
         {
-            var radius = (displacement.BoreSize / 2);
+            var displacementValue = 0.0;
+
+            if (displacement.BoreSize.HasValue && displacement.CrankshaftStrokeLength.HasValue && displacement.Cylinders.HasValue)
+            {
+                var radius = (displacement.BoreSize.Value / 2);
+                displacementValue = Math.Round(Math.Pow(radius, 2) * Math.PI * displacement.CrankshaftStrokeLength.Value * displacement.Cylinders.Value);
+            }
+
             EngineAnalytics displacementCalcs = new EngineAnalytics
             {
-                Displacement = Math.Round(Math.Pow(radius, 2) * Math.PI * displacement.CrankshaftStrokeLength * displacement.Cylinders)
+                Displacement = displacementValue
             };
 
             return displacementCalcs;
@@ -42,9 +49,16 @@ namespace EngineAnalyticsWebApp.Components.Calculations.Services
 
         public EngineAnalytics CalculateEngineTorque(Torque torque)
         {
+            var torqueValue = 0.0;
+
+            if (torque.Horsepower.HasValue && torque.EngineRPM.HasValue)
+            {
+                torqueValue = Math.Round((torque.Horsepower.Value * 5252) / torque.EngineRPM.Value);
+            }
+
             EngineAnalytics torqueCalcs = new EngineAnalytics
             {
-                Torque = Math.Round((torque.Horsepower * 5252) / torque.EngineRPM)
+                Torque = torqueValue
             };
 
             return torqueCalcs;

@@ -1,15 +1,11 @@
 ﻿using EngineAnalyticsWebApp.Shared.Models.Engine;
 using EngineAnalyticsWebApp.Shared.Services.Data;
-using Microsoft.AspNetCore.Components;
 
 namespace EngineAnalyticsWebApp.Components.Reporting
 {
-    public partial class TorqueDataGrid
+    public partial class TorqueDataGrid(IAutomobileDataService AutomobileDataService)
     {
         private IEnumerable<Automobile> automobileData = new List<Automobile>();
-
-        [Inject]
-        private IAutomobileDataService AutomobileDataService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

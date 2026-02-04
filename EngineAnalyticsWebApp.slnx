@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/1. Blazor UI/">
+    <Project Path="EngineAnalyticsWebApp.UI/EngineAnalyticsWebApp.UI.csproj" />
+  </Folder>
+  <Folder Name="/2. Blazor Components/">
+    <Project Path="EngineAnalyticsWebApp.Components/EngineAnalyticsWebApp.Components.csproj" />
+    <Project Path="EngineAnalyticsWebApp.TestLazy/EngineAnalyticsWebApp.TestLazy.csproj" />
+  </Folder>
+  <Folder Name="/3. Blazor Shared/">
+    <Project Path="EngineAnalyticsWebApp.Shared/EngineAnalyticsWebApp.Shared.csproj" />
+  </Folder>
+</Solution>

@@ -4,17 +4,10 @@ using Microsoft.AspNetCore.Components.Web;
 
 namespace EngineAnalyticsWebApp.UI.Components.Pages.Weather
 {
-    public partial class TrackWeather
+    public partial class TrackWeather(IWeatherService weatherService)
     {
         private string title = "Track Weather";
         private string? zipCode = "";
-
-        public TrackWeather(IWeatherService weatherService)
-        {
-            this.weatherService = weatherService;
-        }
-
-        private IWeatherService weatherService { get; }
 
         protected override async Task OnInitializedAsync()
         {
