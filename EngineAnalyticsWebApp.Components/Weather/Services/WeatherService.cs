@@ -5,7 +5,7 @@ using System.Reactive.Subjects;
 
 namespace EngineAnalyticsWebApp.Components.Weather.Services
 {
-    public class WeatherService : IWeatherService
+    public class WeatherService(ILocalStorageService localStorage) : IWeatherService
     {
         private readonly string defaultZipCode = "89109";
         private readonly string localStorageZipCode = "weatherZipCode";
@@ -13,13 +13,6 @@ namespace EngineAnalyticsWebApp.Components.Weather.Services
         private Subject<string> getCurrentZipCodeSource = new();  //Not using BehaviorSubject because state is managed by localStorage and would conflict
         public IObservable<Current> GetCurrentWeatherStream() => getCurrentWeatherSource.AsObservable();
         public IObservable<string> GetCurrentZipCodeStream() => getCurrentZipCodeSource.AsObservable();
-
-        private readonly ILocalStorageService localStorage;
-        
-        public WeatherService(ILocalStorageService localStorage)
-        {
-            this.localStorage = localStorage;
-        }
 
         public async Task SetWeatherZipCode(string? zipCode)
         {

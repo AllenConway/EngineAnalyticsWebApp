@@ -10,7 +10,12 @@
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.*" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.*" />
+    <PackageReference Include="Microsoft.Extensions.Validation" Version="10.0.*" />
     <PackageReference Include="System.Reactive" Version="6.1.0" />
   </ItemGroup>
+
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);ASP0029</NoWarn>
+  </PropertyGroup>
 
 </Project>

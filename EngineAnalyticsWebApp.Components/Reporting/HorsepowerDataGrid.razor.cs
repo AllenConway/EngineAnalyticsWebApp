@@ -4,14 +4,8 @@ using Microsoft.AspNetCore.Components;
 
 namespace EngineAnalyticsWebApp.Components.Reporting
 {
-    public partial class HorsepowerDataGrid
+    public partial class HorsepowerDataGrid(IAutomobileDataService automobileDataService)
     {
-        private readonly IAutomobileDataService automobileDataService;
-
-        public HorsepowerDataGrid(IAutomobileDataService automobileDataService)
-        {
-            this.automobileDataService = automobileDataService;
-        }
 
         [Parameter]
         public RenderFragment<Automobile> RowTemplate { get; set; } = default!;

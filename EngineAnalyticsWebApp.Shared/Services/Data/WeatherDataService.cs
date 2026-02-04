@@ -3,14 +3,9 @@ using System.Net.Http.Json;
 
 namespace EngineAnalyticsWebApp.Shared.Services.Data
 {
-    public class WeatherDataService : IWeatherDataService
+    public class WeatherDataService(HttpClient http) : IWeatherDataService
     {
 
-        private readonly HttpClient http;
-        public WeatherDataService(HttpClient http)
-        {
-            this.http = http;
-        }
         public async Task<Current> GetCurrentWeather(string zipCode)
         {
             try
