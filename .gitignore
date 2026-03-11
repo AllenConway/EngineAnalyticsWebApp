@@ -482,3 +482,7 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# OpenWeatherMap local API key - configure in this file, never commit
+**/wwwroot/appsettings.Development.json
+**/wwwroot/appsettings.Production.json
