@@ -9,4 +9,7 @@
   <Folder Name="/3. Blazor Shared/">
     <Project Path="EngineAnalyticsWebApp.Shared/EngineAnalyticsWebApp.Shared.csproj" />
   </Folder>
+  <Folder Name="/4. Tests/">
+    <Project Path="EngineAnalyticsWebApp.Components.Tests/EngineAnalyticsWebApp.Components.Tests.csproj" />
+  </Folder>
 </Solution>
