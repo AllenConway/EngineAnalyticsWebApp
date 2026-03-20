@@ -32,9 +32,24 @@ namespace EngineAnalyticsWebApp.Shared.Services.Data
             }
         }
 
-        public Task<IEnumerable<Future>> GetFutureWeather()
+        public async Task<Future> GetFutureWeather(string zipCode)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var requesturi = $"forecast?zip={zipCode}&units=imperial&cnt=40&appid={apiKey}";
+                var results = await http.GetFromJsonAsync<Future>(requesturi);
+                return results ?? new Future();
+            }
+            catch (HttpRequestException ex)
+            {
+                logger.LogError(ex, "OpenWeatherMap API request failed with status {StatusCode}", ex.StatusCode);
+                return new Future();
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Unexpected error fetching future weather for zip {ZipCode}", zipCode);
+                return new Future();
+            }
         }
 
     }

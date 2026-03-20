@@ -1,3 +1,42 @@
-﻿<div class="row">
-    Weather future here
-</div>
+﻿@if (futureWeatherData?.List != null && futureWeatherData?.City != null)
+{
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-subtitle>5-Day Forecast</ion-card-subtitle>
+                        <ion-card-title>@futureWeatherData.City.Name</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content class="ion-no-padding">
+                        <ion-item-group>
+                            @foreach (var item in GetDailyForecasts())
+                            {
+                                <ion-item>
+                                    <ion-label>
+                                        <ion-grid class="ion-no-padding">
+                                            <ion-row>
+                                                <ion-col size="3">
+                                                    @DateTime.Parse(item.DtTxt!).ToString("ddd M/d")
+                                                </ion-col>
+                                                <ion-col size="3">
+                                                    @item.Weather?[0].Main
+                                                </ion-col>
+                                                <ion-col size="3">
+                                                    High: @item.Main?.TempMax<sup>o</sup>
+                                                </ion-col>
+                                                <ion-col size="3">
+                                                    Low: @item.Main?.TempMin<sup>o</sup>
+                                                </ion-col>
+                                            </ion-row>
+                                        </ion-grid>
+                                    </ion-label>
+                                </ion-item>
+                            }
+                        </ion-item-group>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+}

@@ -6,6 +6,6 @@ namespace EngineAnalyticsWebApp.Shared.Services.Data
     {
         Task<Current> GetCurrentWeather(string zipCode);
 
-        Task<IEnumerable<Future>> GetFutureWeather();
+        Task<Future> GetFutureWeather(string zipCode);
     }
 }
