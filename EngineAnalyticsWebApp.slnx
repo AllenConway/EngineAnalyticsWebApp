@@ -11,7 +11,7 @@
   </Folder>
   <Folder Name="/4. Tests/">
     <Project Path="EngineAnalyticsWebApp.Components.Tests/EngineAnalyticsWebApp.Components.Tests.csproj" />
+    <Project Path="EngineAnalyticsWebApp.Shared.Tests/EngineAnalyticsWebApp.Shared.Tests.csproj" />
+    <Project Path="EngineAnalyticsWebApp.UI.Tests/EngineAnalyticsWebApp.UI.Tests.csproj" />
   </Folder>
-  <Project Path="EngineAnalyticsWebApp.Shared.Tests/EngineAnalyticsWebApp.Shared.Tests.csproj" />
-  <Project Path="EngineAnalyticsWebApp.UI.Tests/EngineAnalyticsWebApp.UI.Tests.csproj" />
 </Solution>
