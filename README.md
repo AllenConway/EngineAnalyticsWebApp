@@ -1,5 +1,71 @@
-This solution currently requires .NET 8 and 9 SDKs for building as DartSassBuilder requires .NET 8
+# EngineAnalyticsWebApp
+
+`EngineAnalyticsWebApp` is a .NET 10 Blazor WebAssembly standalone application for engine performance analytics and weather tracking. It combines reusable Razor components, shared engine/weather models, and client-side services to calculate and display horsepower, torque, displacement, and weather data in a browser-based UI.
+
+## Overview
+
+This solution is organized as a Blazor-first workspace with shared UI and data logic split across multiple projects:
+
+- `EngineAnalyticsWebApp.UI` — the standalone Blazor WebAssembly host and user-facing pages
+- `EngineAnalyticsWebApp.Components` — reusable UI components, calculations, reporting, and weather components
+- `EngineAnalyticsWebApp.Shared` — shared models, validation helpers, and client-side data services
+- `EngineAnalyticsWebApp.TestLazy` — lazily loaded messaging feature used by the UI
+- `*.Tests` projects — unit and component tests for the solution's services and Blazor components
+
+The app is designed to:
+
+- calculate engine horsepower, torque, and displacement
+- store and retrieve vehicle data locally in the browser
+- display report-style tables and filters for engine analytics results
+- track current and future weather information by ZIP code
+- demonstrate Blazor WebAssembly lazy-loading and component composition
+
+## Build requirements
+
+This solution targets .NET 10. Building also requires the .NET 8 SDK because `DartSassBuilder` depends on it.
 [See the following for .NET SDK installations](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks)
+
+## Unit Testing
+
+### Frameworks used
+
+- `xUnit` for standard unit tests across services and models
+- `bUnit` for Blazor component tests in the `Components.Tests`, `Shared.Tests`, and `UI.Tests` projects
+
+### Why these frameworks were chosen
+
+- `xUnit` is a lightweight, widely used .NET testing framework that fits well with service, model, and utility tests.
+- `bUnit` is the recommended approach for testing Blazor components because it can render components and verify markup, events, and component behavior in a real Blazor test context.
+- This combination keeps the tests focused, readable, and aligned with the solution's Blazor/WebAssembly architecture.
+
+### Running unit tests and coverage
+
+Use the included PowerShell script from the repository root:
+
+```powershell
+./scripts/coverage.ps1
+```
+
+That script runs the full test suite with coverage enabled, then generates an HTML coverage report and a text summary.
+
+If you want to run the commands manually, the script performs the equivalent of:
+
+```powershell
+dotnet test --settings coverlet.runsettings --results-directory TestResults
+```
+
+and then:
+
+```powershell
+reportgenerator "-reports:TestResults/**/coverage.cobertura.xml" "-targetdir:CoverageReport" "-reporttypes:Html;TextSummary"
+```
+
+After it finishes:
+
+- Open `CoverageReport/index.htm` for the HTML report
+- Review `CoverageReport/Summary.txt` for a quick coverage summary
+
+The current solution coverage is above 85%.
 
 ## OpenWeatherMap API Key Setup
 

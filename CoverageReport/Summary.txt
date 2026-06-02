@@ -1,0 +1,61 @@
+Summary
+  Generated on: 6/1/2026 - 8:09:12 PM
+  Coverage date: 5/31/2026 - 2:44:41 AM - 6/1/2026 - 8:09:05 PM
+  Parser: MultiReport (9x Cobertura)
+  Assemblies: 4
+  Classes: 33
+  Files: 44
+  Line coverage: 91.3%
+  Covered lines: 242
+  Uncovered lines: 23
+  Coverable lines: 265
+  Total lines: 1199
+  Branch coverage: 79.7% (59 of 74)
+  Covered branches: 59
+  Total branches: 74
+  Method coverage: 91% (61 of 67)
+  Full method coverage: 88% (59 of 67)
+  Covered methods: 61
+  Fully covered methods: 59
+  Total methods: 67
+
+EngineAnalyticsWebApp.Components                                                       92%
+  EngineAnalyticsWebApp.Components.Calculations.DisplacementCalculation              77.7%
+  EngineAnalyticsWebApp.Components.Calculations.HorsepowerCalculation                77.7%
+  EngineAnalyticsWebApp.Components.Calculations.Services.EngineCalculationsService    100%
+  EngineAnalyticsWebApp.Components.Calculations.TorqueCalculation                    77.7%
+  EngineAnalyticsWebApp.Components.ExampleJsInterop                                   100%
+  EngineAnalyticsWebApp.Components.Filters.HorsepowerFilter                           100%
+  EngineAnalyticsWebApp.Components.Reporting.DisplacementDataGrid                     100%
+  EngineAnalyticsWebApp.Components.Reporting.HorsepowerDataGrid                        92%
+  EngineAnalyticsWebApp.Components.Reporting.ReportHeader                             100%
+  EngineAnalyticsWebApp.Components.Reporting.TorqueDataGrid                          71.4%
+  EngineAnalyticsWebApp.Components.Tables.GenericTable<T>                             100%
+  EngineAnalyticsWebApp.Components.Weather.Services.WeatherService                    100%
+  EngineAnalyticsWebApp.Components.Weather.WeatherCurrent                             100%
+  EngineAnalyticsWebApp.Components.Weather.WeatherFuture                              100%
+  EngineAnalyticsWebApp.Components.Weather.WeatherLocation                            100%
+
+EngineAnalyticsWebApp.Shared                                                          100%
+  EngineAnalyticsWebApp.Shared.Extensions.ServiceCollectionExtensions                 100%
+  EngineAnalyticsWebApp.Shared.Services.Data.AutomobileLocalStorageService            100%
+  EngineAnalyticsWebApp.Shared.Services.Data.WeatherDataService                       100%
+
+EngineAnalyticsWebApp.TestLazy                                                        100%
+  EngineAnalyticsWebApp.TestLazy.Messaging.MessageComponent                           100%
+  EngineAnalyticsWebApp.TestLazy.Messaging.Services.MessageService                    100%
+
+EngineAnalyticsWebApp.UI                                                               84%
+  EngineAnalyticsWebApp.UI.Components.App                                               0%
+  EngineAnalyticsWebApp.UI.Components.Layout.MainLayout                                 0%
+  EngineAnalyticsWebApp.UI.Components.Layout.NavMenu                                  100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Engine.CalculateDisplacement              100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Engine.CalculateHorsepower                100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Engine.CalculateTorque                    100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Home                                      100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Reports.DisplacementResults               100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Reports.DynamicReports                    100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Reports.HorsepowerResults                  25%
+  EngineAnalyticsWebApp.UI.Components.Pages.Reports.TorqueResults                     100%
+  EngineAnalyticsWebApp.UI.Components.Pages.Weather.TrackWeather                      100%
+  EngineAnalyticsWebApp.UI.Services.MessageServiceFactory                             100%
