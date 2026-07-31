@@ -34,3 +34,51 @@
         </tr>
     </RowTemplate>
 </HorsepowerDataGrid>
+
+@* ---------------------------------------------------------------------------
+   ALTERNATIVE: using the generic, presentation-only <GenericTable TItem="...">.
+
+   NOTE: <GenericTable> is a *pure* presentation component - it only renders
+   Items/HeaderCells/RowCells. Unlike <HorsepowerDataGrid>, it does NOT fetch
+   data or provide the Model filter. So to swap it in, THIS page would have to
+   take on those responsibilities (inject the data service, load the data, and
+   render any filter itself). Because of that, GenericTable *can* replace the
+   table rendering, but not the data-fetching/filtering behavior for free.
+
+   Example wiring (would also require the @using/@inject and @code below):
+
+   @using EngineAnalyticsWebApp.Components.Tables
+   @using EngineAnalyticsWebApp.Shared.Models.Engine
+   @using EngineAnalyticsWebApp.Shared.Services.Data
+   @inject IAutomobileDataService AutomobileDataService
+
+   <GenericTable Items="_automobiles">
+       <HeaderCells>
+           <th>Year</th>
+           <th>Make</th>
+           <th>Model</th>
+           <th>Rear Wheel Horsepower</th>
+           <th>Flywheel Horsepower</th>
+       </HeaderCells>
+       <RowCells Context="auto">
+           <td>@(auto.Year is > 0 ? auto.Year.ToString() : "")</td>
+           <td>@auto.Make</td>
+           <td>@auto.Model</td>
+           @if (auto.EngineAnalytics != null)
+           {
+               <td>@auto.EngineAnalytics.RearWheelHorsepower</td>
+               <td>@auto.EngineAnalytics.FlywheelHorsepower</td>
+           }
+       </RowCells>
+   </GenericTable>
+
+   @code {
+       private IEnumerable<Automobile> _automobiles = new List<Automobile>();
+
+       protected override async Task OnInitializedAsync()
+       {
+           var data = await AutomobileDataService.GetAutomobiles();
+           _automobiles = data.Where(x => x.EngineAnalytics?.RearWheelHorsepower != 0).ToList();
+       }
+   }
+--------------------------------------------------------------------------- *@
