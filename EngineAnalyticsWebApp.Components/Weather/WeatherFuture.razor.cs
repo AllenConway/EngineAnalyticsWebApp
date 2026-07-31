@@ -34,15 +34,6 @@ namespace EngineAnalyticsWebApp.Components.Weather
             StateHasChanged();
         }
 
-        private IEnumerable<ForecastItem> GetDailyForecasts()
-        {
-            if (futureWeatherData?.List == null) return [];
-            return futureWeatherData.List
-                .GroupBy(x => DateTime.Parse(x.DtTxt!).Date)
-                .Select(g => g.OrderBy(x => Math.Abs(DateTime.Parse(x.DtTxt!).Hour - 12)).First())
-                .Take(5);
-        }
-
         public void Dispose()
         {
             subscription?.Dispose();
