@@ -1,9 +1,6 @@
 # Normalize line endings
 * text=auto
 
-# Generated output - exclude from language statistics
-CoverageReport/** linguist-generated=true
-
 # Third-party / vendored client assets - exclude from language statistics
 EngineAnalyticsWebApp.UI/wwwroot/lib/** linguist-vendored=true
 EngineAnalyticsWebApp.UI/scss/bootstrap/** linguist-vendored=true
