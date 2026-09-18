@@ -34,8 +34,8 @@
     <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.8.6" />
     <PackageReference Include="BuildWebCompiler2022" Version="1.14.15" />
     <PackageReference Include="DartSassBuilder" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.*" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.*" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.12" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>

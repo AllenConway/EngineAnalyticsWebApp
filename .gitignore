@@ -486,3 +486,16 @@ $RECYCLE.BIN/
 # OpenWeatherMap local API key - configure in this file, never commit
 **/wwwroot/appsettings.Development.json
 **/wwwroot/appsettings.Production.json
+
+# Generated CSS - the .scss sources are committed, these are build output from
+# DartSassBuilder (scss -> css) and BuildBundlerMinifier (css -> min.css)
+**/*.razor.css
+**/*.razor.css.map
+**/*.razor.min.css
+EngineAnalyticsWebApp.UI/scss/**/*.css
+EngineAnalyticsWebApp.UI/scss/**/*.css.map
+EngineAnalyticsWebApp.UI/wwwroot/css/custom.css
+EngineAnalyticsWebApp.UI/wwwroot/css/bundle.min.css
+
+# Hand-authored, no .scss source - keep tracked
+!EngineAnalyticsWebApp.Components/Filters/HorsepowerFilter.razor.css
