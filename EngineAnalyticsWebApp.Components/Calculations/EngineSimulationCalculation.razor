@@ -33,6 +33,11 @@
                     <button type="button" class="btn btn-primary" @onclick="RunInWebWorker" disabled="@(isRunning || !workerReady)">Run in Web Worker</button>
                     <span class="ms-2 text-muted">@workerStatus</span>
                 </div>
+                @*Known .NET 10 issue: the VS debug proxy never resumes Web Worker threads, so the worker hangs at startup under F5.
+                  Fixed in .NET 11 (dotnet/runtime#125617, dotnet/aspnetcore#65823).*@
+                <small class="form-text text-muted d-block mt-1">
+                    Note: Run without the debugger attached (Ctrl+F5). With the Visual Studio debugger attached (F5), the Web Worker hangs at startup in .NET 10.
+                </small>
 
                 <div class="responsiveness-test mt-4 p-3 border rounded">
                     <h5>UI Responsiveness Test</h5>
