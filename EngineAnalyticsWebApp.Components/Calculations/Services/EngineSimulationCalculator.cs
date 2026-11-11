@@ -56,7 +56,7 @@ namespace EngineAnalyticsWebApp.Components.Calculations.Services
                 OperatingPoints = (long)sweeps * PointsPerSweep,
                 PeakHorsepower = Math.Round(peakHorsepower, 2),
                 PeakHorsepowerRpm = Math.Round(peakHorsepowerRpm),
-                Checksum = Math.Round(checksum / sweeps, 4),
+                Checksum = Math.Round(checksum / ((long)sweeps * PointsPerSweep), 4),
                 ElapsedMilliseconds = stopwatch.Elapsed.TotalMilliseconds
             };
         }

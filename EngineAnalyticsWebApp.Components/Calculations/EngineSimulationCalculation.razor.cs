@@ -27,6 +27,7 @@ namespace EngineAnalyticsWebApp.Components.Calculations
         private EngineSimulationResult? result;
         private string statusMessage = "Idle";
         private string alertClass = "alert-secondary";
+        private bool disposed;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -37,14 +38,31 @@ namespace EngineAnalyticsWebApp.Components.Calculations
                 StateHasChanged();
                 try
                 {
-                    module = await js.InvokeAsync<IJSObjectReference>(
+                    var importedModule = await js.InvokeAsync<IJSObjectReference>(
                         "import", "./_content/EngineAnalyticsWebApp.Components/Calculations/EngineSimulationCalculation.razor.js");
-                    await module.InvokeVoidAsync("initializeWorker");
+                    if (disposed)
+                    {
+                        await importedModule.DisposeAsync();
+                        return;
+                    }
+
+                    module = importedModule;
+                    await importedModule.InvokeVoidAsync("initializeWorker");
+                    if (disposed)
+                    {
+                        return;
+                    }
+
                     workerReady = true;
                     workerStatus = "Web Worker ready";
                 }
                 catch (JSException ex)
                 {
+                    if (disposed)
+                    {
+                        return;
+                    }
+
                     workerStatus = "Web Worker unavailable";
                     SetStatus($"Web Worker initialization failed: {ex.Message}", "alert-danger");
                 }
@@ -141,6 +159,8 @@ namespace EngineAnalyticsWebApp.Components.Calculations
 
         public async ValueTask DisposeAsync()
         {
+            disposed = true;
+
             if (module is not null)
             {
                 try
