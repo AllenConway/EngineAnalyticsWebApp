@@ -8,7 +8,7 @@ using Moq;
 
 namespace EngineAnalyticsWebApp.Components.Tests.Calculations
 {
-    public class HorsepowerCalculationComponentTests : TestContext
+    public class HorsepowerCalculationComponentTests : BunitContext
     {
         private readonly Mock<IAutomobileDataService> _automobileDataServiceMock;
         private readonly Mock<IEngineCalculationsService> _engineCalculationsServiceMock;
