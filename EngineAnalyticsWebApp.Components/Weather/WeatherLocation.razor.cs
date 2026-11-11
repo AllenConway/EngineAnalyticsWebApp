@@ -6,20 +6,20 @@ using EngineAnalyticsWebApp.Shared.Models.Weather;
 
 namespace EngineAnalyticsWebApp.Components.Weather
 {
-    public partial class WeatherLocation(IWeatherService weatherService, IJSRuntime js)
+    public partial class WeatherLocation(IWeatherService weatherService, IJSRuntime js) : IAsyncDisposable
     {
         private string? zipCode;
         private IJSObjectReference? module;
 
         protected override async Task OnInitializedAsync()
         {
-            Console.WriteLine("1. OnInitializedAsync executed");
+            Console.WriteLine("2. OnInitializedAsync executed");
             await weatherService.SetWeatherZipCode(zipCode);
         }
 
         public override async Task SetParametersAsync(ParameterView parameters)
         {
-            Console.WriteLine("2. SetParametersAsync executed");
+            Console.WriteLine("1. SetParametersAsync executed");
             await base.SetParametersAsync(parameters);
         }
 

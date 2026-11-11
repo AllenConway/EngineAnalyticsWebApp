@@ -1,13 +1,15 @@
 {
-  "name": "EngineAnalyticsWebApp",
-  "description": "An Blazor PWA containing engine analytics analysis",
-  "short_name": "EngineAnalyticsWebApp",
+  "name": "Engine Analytics Web App",
+  "description": "A Blazor PWA containing engine analytics analysis",
+  "short_name": "Engine Analytics",
   "id": "./",
   "scope": "./",
   "start_url": "./",
   "display": "standalone",
+  "lang": "en-US",
   "background_color": "#ffffff",
   "theme_color": "#03173d",
+  "categories": [ "productivity", "utilities" ],
   "prefer_related_applications": false,
   "icons": [
     {
