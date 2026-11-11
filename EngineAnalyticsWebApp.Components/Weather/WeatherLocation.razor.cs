@@ -83,8 +83,10 @@ namespace EngineAnalyticsWebApp.Components.Weather
 
         public async ValueTask DisposeAsync()
         {
-            if (module is not null)
-                await module.DisposeAsync();
+            var moduleToDispose = module;
+            module = null;
+            if (moduleToDispose is not null)
+                await moduleToDispose.DisposeAsync();
         }
     }
 
