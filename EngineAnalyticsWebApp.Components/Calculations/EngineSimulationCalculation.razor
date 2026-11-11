@@ -1,0 +1,61 @@
+@using EngineAnalyticsWebApp.Components.Calculations.Services
+
+<div class="row mt-4">
+    <div class="col-xl-8 col-lg-10">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">Compare CPU-intensive calculations on the browser's main thread versus a .NET Web Worker.</p>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label for="workloadPreset">Workload Preset</label>
+                        <select class="form-select" id="workloadPreset" value="@sweeps" @onchange="SelectPreset" disabled="@isRunning">
+                            @foreach (var preset in presets)
+                            {
+                                <option value="@preset.Sweeps">@preset.Name (@preset.Sweeps.ToString("N0") sweeps)</option>
+                            }
+                            @if (!presets.Any(p => p.Sweeps == sweeps))
+                            {
+                                <option value="@sweeps">Custom</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="simulationSweeps">Dyno Sweeps (@EngineSimulationCalculator.PointsPerSweep.ToString("N0") RPM points each)</label>
+                        <input type="number" class="form-control" id="simulationSweeps" min="1" max="@MaxSweeps" step="100"
+                               @bind="sweeps" disabled="@isRunning" />
+                    </div>
+                </div>
+                <small class="form-text text-muted">Total operating points: @(((long)sweeps * EngineSimulationCalculator.PointsPerSweep).ToString("N0"))</small>
+
+                <div class="mt-3">
+                    <button type="button" class="btn btn-primary me-2" @onclick="RunOnMainThread" disabled="@isRunning">Run on Main Thread</button>
+                    <button type="button" class="btn btn-primary" @onclick="RunInWebWorker" disabled="@(isRunning || !workerReady)">Run in Web Worker</button>
+                    <span class="ms-2 text-muted">@workerStatus</span>
+                </div>
+
+                <div class="responsiveness-test mt-4 p-3 border rounded">
+                    <h5>UI Responsiveness Test</h5>
+                    <button type="button" class="btn btn-outline-secondary" @onclick="IncrementClickCount">Click Me</button>
+                    <span class="ms-3" aria-live="polite">Click count: <strong>@clickCount</strong></span>
+                </div>
+
+                <h5 class="mt-4">Results</h5>
+                <dl class="row simulation-results">
+                    <dt class="col-sm-5">Execution Mode</dt>
+                    <dd class="col-sm-7">@(executionMode ?? "-")</dd>
+                    <dt class="col-sm-5">Calculation Elapsed Time</dt>
+                    <dd class="col-sm-7">@(result is null ? "-" : $"{result.ElapsedMilliseconds:N0} ms")</dd>
+                    <dt class="col-sm-5">Peak Horsepower</dt>
+                    <dd class="col-sm-7">@(result is null ? "-" : $"{result.PeakHorsepower:N2} hp @ {result.PeakHorsepowerRpm:N0} RPM")</dd>
+                    <dt class="col-sm-5">Operating Points</dt>
+                    <dd class="col-sm-7">@(result is null ? "-" : result.OperatingPoints.ToString("N0"))</dd>
+                    <dt class="col-sm-5">Checksum (average hp)</dt>
+                    <dd class="col-sm-7">@(result is null ? "-" : result.Checksum.ToString("N4"))</dd>
+                </dl>
+
+                <div class="alert @alertClass mt-3" role="status" aria-live="polite">@statusMessage</div>
+            </div>
+        </div>
+    </div>
+</div>
