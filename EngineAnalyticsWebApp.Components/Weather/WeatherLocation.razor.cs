@@ -34,8 +34,11 @@ namespace EngineAnalyticsWebApp.Components.Weather
             Console.WriteLine("4. OnAfterRenderAsync executed");
             if (firstRender)
             {
+                // IJSRuntime: Blazor's gateway for calling JavaScript from C#
                 module = await js.InvokeAsync<IJSObjectReference>(
                     "import", "./_content/EngineAnalyticsWebApp.Components/Weather/WeatherLocation.razor.js");
+                //module = await js.InvokeAsync<IJSObjectReference>(
+                //        "import", "./_content/EngineAnalyticsWebApp.Components/jstest.min.js");
             }
         }
 

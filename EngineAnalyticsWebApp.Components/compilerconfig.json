@@ -2,5 +2,9 @@
   {
     "outputFile": "Weather/WeatherLocation.razor.min.js",
     "inputFile": "Weather/WeatherLocation.razor.js"
+  },
+  {
+    "outputFile": "wwwroot/jstest.min.js",
+    "inputFile": "wwwroot/jstest.js"
   }
 ]
